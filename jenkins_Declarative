@@ -6,15 +6,4 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Akshay-2495/DemoEclipsProject.git'
             }
         }
-        stage('Build with Maven') {
-            steps {
-                script {
-                    def mvnHome = tool 'Maven' // Make sure 'Maven' is configured in Jenkins Global Tool Configuration
-                    dir('DemoEclipsProject') { // Change to the directory where the code is checked out
-                        sh "${mvnHome}/bin/mvn clean install"
-                    }
-                }
-            }
-        }
-    }
 }
