@@ -6,10 +6,5 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Akshay-2495/DemoEclipsProject.git'
             }
         }
-            Stage('Maven Bild'){
-            tools{
-            maven '3.9.7'
-            }
-        }
-     }
+    }
 }
