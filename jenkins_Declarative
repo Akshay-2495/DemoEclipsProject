@@ -1,12 +1,18 @@
-pipeline{
-        agent any
-        stages{
-            stage("Git Checkout"){
-                steps{
-                    git branch: 'main', url: 'https://github.com/Akshay-2495/DemoEclipsProject.git'
+pipeline {
+    agent any
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Akshay-2495/DemoEclipsProject.git'
+            }
+        }
+        stage('Build with Maven') {
+            steps {
+                script {
+                    def mvnHome = tool 'Maven' // Make sure 'Maven' is configured in Jenkins Global Tool Configuration
+                    sh "${mvnHome}/bin/mvn clean install"
                 }
             }
         }
-    
-    
+    }
 }
