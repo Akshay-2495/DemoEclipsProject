@@ -1,17 +1,9 @@
 pipeline {
     agent any
-    tools {
-        maven '3.9.7' // Make sure '3.9.7' is configured in Jenkins Global Tool Configuration
-    }
     stages {
         stage('Git Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Akshay-2495/DemoEclipsProject.git'
-            }
-        }
-        stage('Compile') {
-            steps {
-                sh 'mvn clean compile'
             }
         }
     }
