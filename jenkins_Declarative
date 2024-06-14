@@ -1,26 +1,30 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.1-jdk-11' // Use the appropriate Maven Docker image
-            args '-v /root/.m2:/root/.m2' // Cache Maven dependencies
-        }
-    }
-    environment {
-        MAVEN_OPTS = '-Dmaven.repo.local=/root/.m2/repository'
+    agent any
+    tools{
+        maven 'maven_3_5_0'
+
     }
     stages {
-        stage('Checkout') {
+        stage('Git Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Akshay-2495/DemoEclipsProject.git'
             }
         }
         stage('Build') {
             steps {
-                script {
-                    // Run Maven build and specify the location of the pom.xml file
-                    sh 'mvn -f WebEcomproject/pom.xml clean install'
-                }
+                sh "mvn clean compile"
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+
     }
-}   
+}
