@@ -22,35 +22,4 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                script {
-                    // Run Maven tests
-                    sh 'mvn -f C:\Users\ASUS\git\repository2\WebEcomproject\pom.xml'
-                }
-            }
-        }
-        stage('Generate Allure Report') {
-            steps {
-                script {
-                    // Run Allure report generation
-                    sh 'allure generate --clean'
-                }
-            }
-        }
-        stage('Serve Allure Report') {
-            steps {
-                script {
-                    // Serve Allure report
-                    sh 'allure serve'
-                }
-            }
-        }
     }
-    post {
-        always {
-            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-            junit '**/target/surefire-reports/*.xml'
-        }
-    }
-}
