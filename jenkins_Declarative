@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Run Maven build and specify the location of the pom.xml file
-                    sh 'mvn -f path/to/your/pom.xml clean install'
+                    sh 'mvn -f WebEcomproject/pom.xml clean install'
                 }
             }
         }
